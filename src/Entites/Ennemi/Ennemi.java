@@ -69,7 +69,7 @@ public abstract class Ennemi extends Entite{
             this.positionChemin += (Math.abs(((next.getCentreY() - actuelle.getCentreY()) * this.speedMove * deltaTimeSec)/(next.getCentreY() - actuelle.getCentreY())))/2;
         }
         
-        Affichage.affichageEnnemi(posX, posY, radius, couleur);
+        Affichage.affichageEnnemi(posX, posY, radius, couleur, this.pv);
     }
 
     public double getPositionChemin() {
