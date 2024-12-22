@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
+
+import Entites.Joueur;
 import Entites.Ennemi.Ennemi;
 import Entites.Ennemi.Minion;
 import libraries.StdDraw;
@@ -25,6 +27,7 @@ public class Game {
     private Case precedent;
     private boolean clique;
     private ArrayList<Case> cliquable;
+    private Joueur player;
 
     public Game(){
         launch();
@@ -54,7 +57,7 @@ public class Game {
 
 
     private boolean isGameRunning (){
-        if(this.wavePosition >= this.wave.size() && this.ennemis.size() == 0 && this.levelPosition == this.level.size()){
+        if(this.wavePosition >= this.wave.size() && this.ennemis.size() == 0 && this.levelPosition == this.level.size() && player.getPv() > 0){
             System.out.println("jeu arrêté");
             return false;
         }
@@ -82,6 +85,7 @@ public class Game {
         this.levelPosition ++;
         this.ennemis = new LinkedList<>();
         this.cliquable = initCliquable();
+        this.player = new Joueur();
     }
 
 
@@ -94,6 +98,8 @@ public class Game {
         //this.affichage.mouseOverTours(this.carte);
         mouseSelection(this.cliquable);
         this.affichage.redrawCarte(this.carte);
+
+        player.affichageJoueur();
         for(Ennemi e : this.ennemis){
             e.update(deltaTimeSec, this.carte.getChemin());
         }
@@ -101,8 +107,8 @@ public class Game {
         StdDraw.pause(16);
 
         if(ennemis.size() > 0 && ennemis.getFirst().getPositionChemin() == this.carte.getChemin().size()-1){
+            player.setPv(player.getPv() - ennemis.getFirst().getAtk());
             ennemis.removeFirst();
-            // TODO faire perdre les pv du joueur ici !!!
         }
 
         if(this.wavePosition >= this.wave.size() && this.ennemis.size() == 0){

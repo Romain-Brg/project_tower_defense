@@ -1,14 +1,20 @@
 package Entites.Tours;
 
+import java.awt.Color;
+
 import Entites.Entite;
+import libraries.StdDraw;
 
 public class Tours extends Entite {
      
     protected int cost;
+    protected Color couleur;
 
-    public Tours(int cost,int pv, String nom, int atk, double atkSpeed, double range, String element, double posX, double posY){
+
+    public Tours(int cost,int pv, String nom, int atk, double atkSpeed, double range, String element, double posX, double posY, Color color){
         super(pv, nom, atk, atkSpeed, range, element,  posX, posY);
         this.cost = cost;
+        this.couleur = color;
     }
 
     public int getCost() {
@@ -17,6 +23,12 @@ public class Tours extends Entite {
 
     public void setCost(int cost) {
         this.cost = cost;
+    }
+
+    public void affichageTour(double posX, double posY){
+        StdDraw.enableDoubleBuffering();
+        StdDraw.setPenColor(this.couleur);
+        StdDraw.filledCircle(posX, posY, 10);
     }
     
 

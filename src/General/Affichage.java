@@ -54,31 +54,6 @@ public class Affichage {
     }
 
 
-    public static void affichageEnnemi(double posX, double posY, int radius, Color couleur, int pv){
-        double doublePV = (double) pv;
-        double x_PV = ((10-doublePV)/10);
-        double halfWidth_PV = (doublePV/10);
-
-
-
-        StdDraw.enableDoubleBuffering();
-        StdDraw.setPenColor(couleur);
-        StdDraw.filledCircle(posX, posY, radius);
-
-
-        StdDraw.setPenColor(Color.BLACK);
-
-        StdDraw.rectangle(posX, posY+10, 15, 4);
-        StdDraw.setPenColor(Color.GREEN);
-        StdDraw.filledRectangle(posX-(15*x_PV), posY+10,(15*halfWidth_PV) , 4);
-    }
-
-    public static void affichageTour(double posX, double posY, Color couleur){
-        StdDraw.enableDoubleBuffering();
-        StdDraw.setPenColor(couleur);
-        StdDraw.filledCircle(posX, posY, 10);
-    }
-
 
     // public void mouseOverTours(Carte carte){
     //     double sourisX = StdDraw.mouseX();

@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import Entites.Entite;
 import General.Affichage;
 import General.Case;
+import libraries.StdDraw;
 
 public abstract class Ennemi extends Entite{
 
@@ -50,6 +51,25 @@ public abstract class Ennemi extends Entite{
         this.reward = reward;
     }
 
+    public void affichageEnnemi(double posX, double posY){
+        double doublePV = (double) this.pv;
+        double x_PV = ((10-doublePV)/10);
+        double halfWidth_PV = (doublePV/10);
+
+
+
+        StdDraw.enableDoubleBuffering();
+        StdDraw.setPenColor(couleur);
+        StdDraw.filledCircle(posX, posY, this.radius);
+
+
+        StdDraw.setPenColor(Color.BLACK);
+
+        StdDraw.rectangle(posX, posY+10, 15, 4);
+        StdDraw.setPenColor(Color.GREEN);
+        StdDraw.filledRectangle(posX-(15*x_PV), posY+10,(15*halfWidth_PV) , 4);
+    }
+
     public void update(double deltaTimeSec, LinkedList<Case> chemin){
         int positionCheminInt = (int) this.positionChemin;
 
@@ -69,7 +89,7 @@ public abstract class Ennemi extends Entite{
             this.positionChemin += (Math.abs(((next.getCentreY() - actuelle.getCentreY()) * this.speedMove * deltaTimeSec)/(next.getCentreY() - actuelle.getCentreY())))/2;
         }
         
-        Affichage.affichageEnnemi(posX, posY, radius, couleur, this.pv);
+        affichageEnnemi(posX, posY);
     }
 
     public double getPositionChemin() {
