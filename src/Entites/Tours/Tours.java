@@ -3,6 +3,7 @@ package Entites.Tours;
 import java.awt.Color;
 
 import Entites.Entite;
+import Entites.Ennemi.Ennemi;
 import libraries.StdDraw;
 
 public class Tours extends Entite {
@@ -30,6 +31,22 @@ public class Tours extends Entite {
         StdDraw.setPenColor(this.couleur);
         StdDraw.filledCircle(posX, posY, 10);
     }
+
+    public boolean detectionEnnemi(Ennemi ennemi){
+        return ennemi.getPosX() <= this.posX + this.range &&  ennemi.getPosX() >= this.posX - this.range && ennemi.getPosY() <= this.posX + this.range && ennemi.getPosY() >= this.posX - this.range;
+    }
+
+    public void hitEnnemi(Ennemi ennemi){
+        if(ennemi.getPv() <= 0){
+            return;
+        }
+        else{
+            ennemi.setPv(ennemi.getPv()-this.atk);
+        }
+
+    }
+
+    
     
 
 

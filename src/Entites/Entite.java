@@ -25,6 +25,14 @@ public abstract class Entite{
         this.posY = posY;
     }
 
+    public double getPosX() {
+        return posX;
+    }
+
+    public double getPosY() {
+        return posY;
+    }
+
     public int getPv() {
         return pv;
     }
