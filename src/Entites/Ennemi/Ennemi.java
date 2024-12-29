@@ -3,11 +3,10 @@ package Entites.Ennemi;
 import java.awt.Color;
 import java.util.LinkedList;
 import Entites.Entite;
-import General.Affichage;
 import General.Case;
 import libraries.StdDraw;
 
-public abstract class Ennemi extends Entite{
+public class Ennemi extends Entite{
 
     private double speedMove;
     private int reward;

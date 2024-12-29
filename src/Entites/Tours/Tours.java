@@ -1,6 +1,7 @@
 package Entites.Tours;
 
 import java.awt.Color;
+import java.util.LinkedList;
 
 import Entites.Entite;
 import Entites.Ennemi.Ennemi;
@@ -46,7 +47,18 @@ public class Tours extends Entite {
 
     }
 
-    
+    public void updateTour(LinkedList<Ennemi> ennemis,  double deltaTimeSec){
+        Ennemi ennemiFocus = ennemis.getFirst();
+        
+        for(Ennemi e : ennemis){
+            if(detectionEnnemi(e)){
+                ennemiFocus = e;
+                break;
+            }
+        }
+        
+
+    }
     
 
 
